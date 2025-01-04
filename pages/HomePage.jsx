@@ -10,7 +10,7 @@ export default function HomePage({ navigation }) {
       <View style={styles.cardsContainer}>
         <TouchableOpacity
           style={styles.card}
-          onPress={() => navigation.navigate('Payement')}
+          onPress={() => navigation.navigate('Payment')}
         >
           <ImageBackground
             source={require('../assets/background.jpg')}

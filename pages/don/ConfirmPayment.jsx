@@ -35,6 +35,12 @@ const ConfirmPayment = ({ route, navigation }) => {
         <View style={dynamicStyles.container}>
             {/* Section gauche : Détails du don */}
             <View style={dynamicStyles.leftSection}>
+                <TouchableOpacity
+                    style={[styles.backButton, styles.backButton2]}
+                    onPress={() => navigation.navigate('Payment', { amount })}
+                >
+                    <Text style={styles.backButtonText}>Retour</Text>
+                </TouchableOpacity>
                 <Text style={styles.header}>Faire un don</Text>
                 <View style={styles.donationBox}>
                     <Text style={styles.donationText}>Je fais un don de</Text>
@@ -121,6 +127,10 @@ const styles = StyleSheet.create({
     backButtonText: {
         color: '#FFFFFF',
         fontSize: 16,
+    },
+    backButton2: {
+        paddingHorizontal: 15, // Ajoute du padding horizontal pour que le bouton s'ajuste à son texte
+        alignSelf: 'flex-start', // Positionne le bouton en haut à gauche du conteneur
     },
     rightSection: {
         flex: 2,

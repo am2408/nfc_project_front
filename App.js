@@ -2,8 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from './pages/HomePage';
 import LockPage from './pages/LockPage';
-import Payment from './pages/Payment';
-import ConfirmPayment from './pages/ConfirmPayment';
+import Payment from './pages/don/Payment';
+import ConfirmPayment from './pages/don/ConfirmPayment';
 
 const Stack = createStackNavigator();
 

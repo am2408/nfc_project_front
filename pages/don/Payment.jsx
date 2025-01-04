@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { useInactivity } from '../../context/InactivityContext';
 
 const Payment = ({ navigation, route }) => {
+
+      const resetInactivityTimer = useInactivity();
+    
+      useEffect(() => {
+        resetInactivityTimer(); // Réinitialiser le timer lors du montage
+      }, []);
+
+
     const [selectedAmount, setSelectedAmount] = useState(null);
     const [customAmount, setCustomAmount] = useState('');
 
@@ -40,6 +49,12 @@ const Payment = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Text style={styles.backButtonText}>Retour</Text>
+            </TouchableOpacity>
             <View style={styles.headerContainer}>
                 <Text style={styles.header}>Faire un don</Text>
                 <Text style={styles.subHeader}>Sélectionnez le don que vous souhaitez réaliser</Text>
@@ -158,6 +173,18 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    backButton: {
+        backgroundColor: '#00796B',
+        paddingVertical: 10,
+        paddingHorizontal: 15, // Ajoute du padding horizontal pour que le bouton s'ajuste à son texte
+        borderRadius: 10,
+        alignItems: 'center',
+        alignSelf: 'flex-start', // Positionne le bouton en haut à gauche du conteneur
+    },
+    backButtonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
     },
 });
 

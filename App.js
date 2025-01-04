@@ -15,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistReducer, persistStore } from "redux-persist";
 import { Provider } from "react-redux";
+import { InactivityProvider } from "./context/InactivityContext";
 
 const Stack = createStackNavigator();
 const reducers = combineReducers({ userReducer });
@@ -29,45 +30,46 @@ const persistor = persistStore(store);
 export default function App() {
   return (
     <NavigationContainer>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <Stack.Navigator initialRouteName="Lock">
-            <Stack.Screen
-              name="Lock"
-              component={LockPage}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Home"
-              component={HomePage}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Payment"
-              component={Payment}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ConfirmPayment"
-              component={ConfirmPayment}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Register"
-              component={Register}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="User"
-              component={User}
-              options={{ headerShown: false }}
-            />
-            {/* <Stack.Screen
+      <InactivityProvider>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen
+                name="Lock"
+                component={LockPage}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Home"
+                component={HomePage}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Payment"
+                component={Payment}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ConfirmPayment"
+                component={ConfirmPayment}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Register"
+                component={Register}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="User"
+                component={User}
+                options={{ headerShown: false }}
+              />
+              {/* <Stack.Screen
               name="UpdateUser"
               component={UpdateUser}
               options={{ headerShown: false }}
@@ -77,9 +79,10 @@ export default function App() {
               component={UpdatePassword}
               options={{ headerShown: false }}
             /> */}
-          </Stack.Navigator>
-        </PersistGate>
-      </Provider>
+            </Stack.Navigator>
+          </PersistGate>
+        </Provider>
+      </InactivityProvider>
     </NavigationContainer>
   );
 }

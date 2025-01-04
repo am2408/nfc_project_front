@@ -5,10 +5,17 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "../components/Menu";
+import { useInactivity } from "../context/InactivityContext";
 
 export default function HomePage({ navigation }) {
+  const resetInactivityTimer = useInactivity();
+
+  useEffect(() => {
+    resetInactivityTimer(); // Réinitialiser le timer lors du montage
+  }, []);
+
   return (
     <View style={styles.container}>
       <Menu navigation={navigation} />
@@ -19,7 +26,7 @@ export default function HomePage({ navigation }) {
           onPress={() => navigation.navigate("Payment")}
         >
           <ImageBackground
-            source={require("../assets/background.jpg")}
+            source={require("../assets/sadaqa.png")}
             style={styles.cardImage}
             imageStyle={styles.cardImageStyle}
           >

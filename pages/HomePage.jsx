@@ -21,7 +21,7 @@ export default function HomePage({ navigation }) {
           onPress={() => navigation.navigate('Payment')}
         >
           <ImageBackground
-            source={require('../assets/background.jpg')}
+            source={require('../assets/sadaqa.png')}
             style={styles.cardImage}
             imageStyle={styles.cardImageStyle}
           >

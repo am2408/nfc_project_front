@@ -1,8 +1,16 @@
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Menu from '../components/Menu';
+import { useInactivity } from '../context/InactivityContext';
 
 export default function HomePage({ navigation }) {
+
+  const resetInactivityTimer = useInactivity();
+
+  useEffect(() => {
+    resetInactivityTimer(); // Réinitialiser le timer lors du montage
+  }, []);
+
   return (
     <View style={styles.container}>
       <Menu />
@@ -37,7 +45,7 @@ export default function HomePage({ navigation }) {
             </View>
           </ImageBackground>
         </TouchableOpacity> */}
-        
+
       </View>
     </View>
   );

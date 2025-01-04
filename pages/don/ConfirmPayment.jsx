@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useInactivity } from '../../context/InactivityContext';
 
 const ConfirmPayment = ({ route, navigation }) => {
+
+      const resetInactivityTimer = useInactivity();
+    
+      useEffect(() => {
+        resetInactivityTimer(); // Réinitialiser le timer lors du montage
+      }, []);
+
     const { width, height } = Dimensions.get('window');
     const { amount } = route.params;
 

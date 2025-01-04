@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { useInactivity } from '../../context/InactivityContext';
 
 const Payment = ({ navigation, route }) => {
+
+      const resetInactivityTimer = useInactivity();
+    
+      useEffect(() => {
+        resetInactivityTimer(); // Réinitialiser le timer lors du montage
+      }, []);
+
+
     const [selectedAmount, setSelectedAmount] = useState(null);
     const [customAmount, setCustomAmount] = useState('');
 

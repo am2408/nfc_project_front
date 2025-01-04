@@ -1,19 +1,25 @@
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import React from 'react';
-import Menu from '../components/Menu';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
+import React from "react";
+import Menu from "../components/Menu";
 
 export default function HomePage({ navigation }) {
   return (
     <View style={styles.container}>
-      <Menu />
+      <Menu navigation={navigation} />
 
       <View style={styles.cardsContainer}>
         <TouchableOpacity
           style={styles.card}
-          onPress={() => navigation.navigate('Payment')}
+          onPress={() => navigation.navigate("Payment")}
         >
           <ImageBackground
-            source={require('../assets/background.jpg')}
+            source={require("../assets/background.jpg")}
             style={styles.cardImage}
             imageStyle={styles.cardImageStyle}
           >
@@ -37,7 +43,6 @@ export default function HomePage({ navigation }) {
             </View>
           </ImageBackground>
         </TouchableOpacity> */}
-        
       </View>
     </View>
   );
@@ -46,42 +51,42 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4DB6AC',
+    backgroundColor: "#4DB6AC",
   },
   cardsContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     padding: 20,
   },
   card: {
-    width: '45%',
+    width: "45%",
     height: 200,
     borderRadius: 15,
-    overflow: 'hidden',
+    overflow: "hidden",
     elevation: 5, // Shadow for Android
-    shadowColor: '#000', // Shadow for iOS
+    shadowColor: "#000", // Shadow for iOS
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
   cardImage: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   cardImageStyle: {
     borderRadius: 15,
   },
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   cardText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

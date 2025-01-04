@@ -2,14 +2,16 @@ import React, { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useInactivity } from '../../context/InactivityContext';
+import { ScrollView } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ConfirmPayment = ({ route, navigation }) => {
 
-      const resetInactivityTimer = useInactivity();
-    
-      useEffect(() => {
+    const resetInactivityTimer = useInactivity();
+
+    useEffect(() => {
         resetInactivityTimer(); // Réinitialiser le timer lors du montage
-      }, []);
+    }, []);
 
     const { width, height } = Dimensions.get('window');
     const { amount } = route.params;
@@ -40,48 +42,54 @@ const ConfirmPayment = ({ route, navigation }) => {
     };
 
     return (
-        <View style={dynamicStyles.container}>
-            {/* Section gauche : Détails du don */}
-            <View style={dynamicStyles.leftSection}>
-                <TouchableOpacity
-                    style={[styles.backButton, styles.backButton2]}
-                    onPress={() => navigation.navigate('Payment', { amount })}
-                >
-                    <Text style={styles.backButtonText}>Retour</Text>
-                </TouchableOpacity>
-                <Text style={styles.header}>Faire un don</Text>
-                <View style={styles.donationBox}>
-                    <Text style={styles.donationText}>Je fais un don de</Text>
-                    <Text style={styles.donationAmount}>{amount}€</Text>
-                    <Text style={styles.heartIcon}>❤️</Text>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <View style={dynamicStyles.container}>
+                {/* Section gauche : Détails du don */}
+                <View style={dynamicStyles.leftSection}>
+                    <TouchableOpacity
+                        style={[styles.backButton, styles.backButton2]}
+                        onPress={() => navigation.navigate('Payment', { amount })}
+                    >
+                        <Text style={styles.backButtonText}>Retour</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.header}>Faire un don</Text>
+                    <View style={styles.donationBox}>
+                        <Text style={styles.donationText}>Je fais un don de</Text>
+                        <Text style={styles.donationAmount}>{amount}€</Text>
+                        <Text style={styles.heartIcon}>❤️</Text>
+                    </View>
+                    <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={() => navigation.navigate('Payment', { amount })}
+                    >
+                        <Text style={styles.backButtonText}>Modifier mon don</Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.navigate('Payment', { amount })}
-                >
-                    <Text style={styles.backButtonText}>Modifier mon don</Text>
-                </TouchableOpacity>
-            </View>
 
-            {/* Section droite : Paiement */}
-            <View style={styles.rightSection}>
-                <Text style={styles.paymentHeader}>Passez votre carte</Text>
-                <View style={dynamicStyles.contactlessArea}></View>
+                {/* Section droite : Paiement */}
+                <View style={styles.rightSection}>
+                    <View style={styles.contactlessCard}>
+                        <Text style={styles.paymentHeader}>Passez votre carte</Text>
+                        <View style={styles.iconContainer}>
+                            <Icon name="contactless-payment" size={80} color="#00796B" />
+                        </View>
+                    </View>
 
-                <Text style={styles.orText}>OU</Text>
+                    <Text style={styles.orText}>OU</Text>
 
-                {/* Informations de la carte */}
-                <TextInput style={styles.input} placeholder="Nom du titulaire" />
-                <TextInput style={styles.input} placeholder="Numéro de carte" keyboardType="numeric" />
-                <View style={styles.row}>
-                    <TextInput style={[styles.input, styles.smallInput]} placeholder="MM/AA" />
-                    <TextInput style={[styles.input, styles.smallInput]} placeholder="CVC" keyboardType="numeric" />
+                    {/* Informations de la carte */}
+                    <TextInput style={styles.input} placeholder="Nom du titulaire" />
+                    <TextInput style={styles.input} placeholder="Numéro de carte" keyboardType="numeric" />
+                    <View style={styles.row}>
+                        <TextInput style={[styles.input, styles.smallInput]} placeholder="MM/AA" />
+                        <TextInput style={[styles.input, styles.smallInput]} placeholder="CVC" keyboardType="numeric" />
+                    </View>
+                    <TouchableOpacity style={styles.payButton}>
+                        <Text style={styles.payButtonText}>Payer {amount}€</Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.payButton}>
-                    <Text style={styles.payButtonText}>Payer {amount}€</Text>
-                </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
@@ -146,11 +154,30 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 20,
     },
+    contactlessCard: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 15,
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 5, // Ombre pour Android
+        shadowColor: '#000', // Ombre pour iOS
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+    },
+    iconContainer: {
+        backgroundColor: '#E0F2F1',
+        borderRadius: 50,
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     paymentHeader: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#00796B',
-        marginBottom: 10,
+        marginBottom: 15,
     },
     contactlessArea: {
         backgroundColor: '#E0F2F1',

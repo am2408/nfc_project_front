@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -63,7 +64,13 @@ const Login = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(false);
 
   return (
-    <>
+    <ScrollView contentContainerStyle={styles.formContainer}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.navigate("Home")} // Retour à la page précédente
+      >
+        <Text style={styles.backButtonText}>Retour</Text>
+      </TouchableOpacity>
       <View style={styles.form}>
         <Text style={styles.label}>Nom d'utilisateur ou adresse email</Text>
         <Controller
@@ -155,11 +162,16 @@ const Login = ({ navigation }) => {
           </Text>
         </Text>
       </View>
-    </>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  formContainer: {
+    flexGrow: 1,
+    justifyContent: "flex-start", // Pour garantir que le contenu commence en haut
+    padding: 10,
+  },
   form: {
     display: "flex",
     alignItems: "center",
@@ -220,6 +232,15 @@ const styles = StyleSheet.create({
   link: {
     color: "aqua",
     textDecorationLine: "underline",
+  },
+  backButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    borderRadius: 8.5,
+    textAlign: "center",
+    backgroundColor: "#00796B",
+    paddingVertical: 10,
+    width: 100,
   },
 });
 

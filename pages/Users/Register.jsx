@@ -13,7 +13,6 @@ import { useForm, Controller } from "react-hook-form";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Register = ({ navigation }) => {
-  const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
 
   const user = useSelector((state) => state.userReducer.value);
@@ -63,6 +62,12 @@ const Register = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.formContainer}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()} // Retour à la page précédente
+      >
+        <Text style={styles.backButtonText}>Retour</Text>
+      </TouchableOpacity>
       <View style={styles.form}>
         <Text style={styles.label}>Nom d'utilisateur</Text>
         <Controller
@@ -165,18 +170,8 @@ const Register = ({ navigation }) => {
             })();
           }}
         >
-          <Text>Connect</Text>
+          <Text>Créer mon compte</Text>
         </TouchableOpacity>
-
-        <Text style={styles.already}>
-          Pas de compte ?{" "}
-          <Text
-            style={styles.link}
-            onPress={() => navigation.navigate("Register")}
-          >
-            Enregistrez-vous ici
-          </Text>
-        </Text>
       </View>
     </ScrollView>
   );
@@ -248,6 +243,15 @@ const styles = StyleSheet.create({
   link: {
     color: "aqua",
     textDecorationLine: "underline",
+  },
+  backButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    borderRadius: 8.5,
+    textAlign: "center",
+    backgroundColor: "#00796B",
+    paddingVertical: 10,
+    width: 100,
   },
 });
 

@@ -19,7 +19,10 @@
         "foregroundImage": "./assets/favicon.ico",
         "backgroundColor": "#ffffff"
       },
-      "package": "nfccom.mycompany.nfc"
+      "package": "nfccom.mycompany.nfc",
+      "permissions": [
+        "android.permission.NFC"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +37,11 @@
           "nfcPermission": "This app uses NFC to scan tags."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "035d792b-9489-49cd-8546-e3bf96c93029"
+      }
+    }
   }
 }

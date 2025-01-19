@@ -13,7 +13,7 @@ const User = ({ navigation }) => {
 
       navigation.navigate("Login");
     } else {
-      fetch(`http://192.168.1.105:3003/users/getMe`, {
+      fetch(`http://192.168.1.152:3003/users/getMe`, {
         credentials: "include",
       })
         .then((res) => res.json())
@@ -28,7 +28,7 @@ const User = ({ navigation }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://192.168.1.105:3003/users/logout", {
+      const response = await fetch("http://192.168.1.152:3003/users/logout", {
         method: "GET",
         credentials: "include",
       });

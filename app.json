@@ -3,7 +3,6 @@
     "name": "nfc_project_front",
     "slug": "nfc_project_front",
     "version": "1.0.0",
-    "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -19,13 +18,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/favicon.ico",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "nfccom.mycompany.nfc"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "androidNavigationBar": {
       "visible": "immersive"
-    }
+    },
+    "plugins": [
+      [
+        "react-native-nfc-manager",
+        {
+          "nfcPermission": "This app uses NFC to scan tags."
+        }
+      ]
+    ]
   }
 }

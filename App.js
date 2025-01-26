@@ -19,6 +19,7 @@ import { InactivityProvider } from "./context/InactivityContext";
 import NfcManager, { NfcTech } from 'react-native-nfc-manager';
 import { Alert } from 'react-native';
 import Nfc from "./pages/Nfc";
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 const Stack = createStackNavigator();
 const reducers = combineReducers({ userReducer });
@@ -58,6 +59,9 @@ const initializeNfc = async () => {
 initializeNfc();
 
   return (
+    <StripeProvider
+      publishableKey="votre_cle_publiable_stripe"
+    >
     <NavigationContainer>
       <InactivityProvider>
         <Provider store={store}>
@@ -118,5 +122,6 @@ initializeNfc();
         </Provider>
       </InactivityProvider>
     </NavigationContainer>
+    </StripeProvider>
   );
 }
